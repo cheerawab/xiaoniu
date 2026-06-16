@@ -17,13 +17,10 @@ java {
 repositories {
     mavenCentral()
     maven { url = uri("https://repo.papermc.io/repository/maven-public") }
-    flatDir {
-        dirs("libs")
-    }
 }
 
 dependencies {
-    compileOnly(files("libs/paper-api-1.21.7.jar"))
+    compileOnly("io.papermc.paper:paper-api:1.21.7-R0.1-SNAPSHOT")
     compileOnly("com.mojang:brigadier:1.0.14")
 
     compileOnly("net.kyori:adventure-api:4.17.0")
