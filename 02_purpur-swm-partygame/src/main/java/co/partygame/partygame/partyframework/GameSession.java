@@ -327,18 +327,16 @@ public final class GameSession {
         sorted.sort((a, b) -> Integer.compare(b.score, a.score));
 
         int rank = 1;
+        Map<String, ScoreEntry> updatedScores = new HashMap<>();
         for (int i = 0; i < sorted.size(); i++) {
-            if (i > 0 && sorted.get(i).score < sorted.get(i - 1).score) {
+            if (i > 0 && sorted.get(i).score() < sorted.get(i - 1).score()) {
                 rank = i + 1;
             }
-            sorted.get(i).placement = rank;
+            ScoreEntry entry = sorted.get(i);
+            updatedScores.put(entry.playerName(), new ScoreEntry(entry.playerName(), entry.score(), rank));
         }
-
-        // Update the scores map with placements
-        for (ScoreEntry entry : sorted) {
-            ScoreEntry updated = new ScoreEntry(entry.playerName, entry.score, entry.placement);
-            scores.put(entry.playerName, updated);
-        }
+        scores.clear();
+        scores.putAll(updatedScores);
     }
 
     /**
@@ -383,9 +381,6 @@ public final class GameSession {
     public int getRemainingPlayerSlots() {
         return Math.max(0, config.getMaxPlayersPerGame() - players.size());
     }
-
-    public String getAllocatedWorld() { return allocatedWorld; }
-    public void setAllocatedWorld(String world) { this.allocatedWorld = world; }
 
     /**
      * Get a summary string for display.

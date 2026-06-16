@@ -374,7 +374,7 @@ public class PartyGamePlugin extends JavaPlugin {
                     session.leavePlayer(playerName);
 
                     event.setQuitMessage(
-                            ChatColor.GRAY + ChatColor.RED + playerName + " disconnected from game");
+                            ChatColor.GRAY + "" + ChatColor.RED + playerName + " disconnected from game");
 
                     if (config.isLogSessionEvents()) {
                         getLogger().info("Player '" + playerName + "' disconnected from session '"
@@ -393,8 +393,23 @@ public class PartyGamePlugin extends JavaPlugin {
 
         @EventHandler
         public void onPlayerKick(PlayerKickEvent event) {
-            // Similar to quit but with a reason
-            onPlayerQuit(new PlayerQuitEvent(event.getPlayer(), event.getReason()));
+            // Similar to quit but with a reason - handle inline since PlayerQuitEvent(Player,String) is deprecated
+            String playerName = event.getPlayer().getName();
+            for (GameSession session : dispatcher.getActiveSessions()) {
+                if (session.isActivePlayer(playerName)) {
+                    session.removePlayer(playerName);
+                    session.leavePlayer(playerName);
+                    if (config.isLogSessionEvents()) {
+                        getLogger().info("Player '" + playerName + "' kicked from session '"
+                                + session.getId() + "'");
+                    }
+                    if (session.getActivePlayerCount() <= 0
+                            && session.getState() == GameSession.SessionState.ACTIVE) {
+                        session.end();
+                    }
+                    break;
+                }
+            }
         }
 
         @EventHandler

@@ -108,7 +108,9 @@ public class MatchAcceptor implements PluginMessageListener {
                             + request.getRequestId() + " (" + request.getPlayerCount() + "/" + config.getMinPlayersPerGame() + ")");
                 }
                 sendResponse(request.getRequestId(), request.getSourceServer(),
-                        buildDeniedResponse(request.getRequestId(), "Not enough players"));
+                        new MatchResponse.Builder(request.getRequestId())
+                                .denied("Not enough players. Required: " + config.getMinPlayersPerGame())
+                                .build());
                 return;
             }
 
@@ -187,29 +189,22 @@ public class MatchAcceptor implements PluginMessageListener {
                 Map<String, String> settings = new HashMap<>();
                 if (root.has("settings") && root.path("settings").isObject()) {
                     var settingsNode = root.path("settings");
-                    for (var field : settingsNode.fields()) {
-                        settings.put(field.getKey(), field.getValue().asText());
-                    }
+                    settingsNode.fields().forEachRemaining(f -> settings.put(f.getKey(), f.getValue().asText()));
                 }
 
                 Map<String, Object> customOptions = new HashMap<>();
                 if (root.has("custom_options") && root.path("custom_options").isObject()) {
                     var optsNode = root.path("custom_options");
-                    for (var field : optsNode.fields()) {
-                        if (field.getValue().isTextual()) {
-                            customOptions.put(field.getKey(), field.getValue().asText());
-                        } else if (field.getValue().isInt()) {
-                            customOptions.put(field.getKey(), field.getValue().asInt());
-                        } else if (field.getValue().isLong()) {
-                            customOptions.put(field.getKey(), field.getValue().asLong());
-                        } else if (field.getValue().isDouble()) {
-                            customOptions.put(field.getKey(), field.getValue().asDouble());
-                        } else if (field.getValue().isBoolean()) {
-                            customOptions.put(field.getKey(), field.getValue().asBoolean());
-                        } else if (field.getValue().isArray()) {
-                            customOptions.put(field.getKey(), field.getValue().toString());
-                        }
-                    }
+                    optsNode.fields().forEachRemaining(field -> {
+                        var key = field.getKey();
+                        var val = field.getValue();
+                        if (val.isTextual()) customOptions.put(key, val.asText());
+                        else if (val.isInt()) customOptions.put(key, val.asInt());
+                        else if (val.isLong()) customOptions.put(key, val.asLong());
+                        else if (val.isDouble()) customOptions.put(key, val.asDouble());
+                        else if (val.isBoolean()) customOptions.put(key, val.asBoolean());
+                        else if (val.isArray()) customOptions.put(key, val.toString());
+                    });
                 }
 
                 return MatchRequest.builder()
