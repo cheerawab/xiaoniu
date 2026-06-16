@@ -156,9 +156,6 @@ public class BungeeMessenger {
         json.append("]");
         return json.toString();
     }
-        json.append("]");
-        return json.toString();
-    }
 
     /**
      * 將 JSON 字符串解析為 Packets PlayerInfo 對象。
