@@ -20,7 +20,7 @@ dependencies {
     compileOnly("net.kyori:adventure-api:4.17.0")
     compileOnly("net.kyori:adventure-text-minimessage:4.17.0")
 
-    compileOnly("net.luckperms:api:5.4.102")
+    compileOnly("net.luckperms:api:5.4")
     compileOnly("me.clip:placeholderapi:2.11.6")
     compileOnly("redis.clients:jedis:5.1.0")
     compileOnly("com.zaxxer:HikariCP:5.1.0")

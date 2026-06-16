@@ -16,9 +16,6 @@ java {
 repositories {
     mavenCentral()
     maven { url = uri("https://repo.papermc.io/repository/maven-public") }
-    flatDir {
-        dirs("libs")
-    }
 }
 
 dependencies {
