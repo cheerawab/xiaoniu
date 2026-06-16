@@ -12,8 +12,8 @@ repositories {
 }
 
 dependencies {
-    api("com.fasterxml.jackson.core:jackson-databind:2.18.2")
-    api("com.fasterxml.jackson.core:jackson-core:2.18.2")
+    implementation("com.fasterxml.jackson.core:jackson-databind:2.18.2")
+    implementation("com.fasterxml.jackson.core:jackson-core:2.18.2")
 
     implementation("commons-pool2:commons-pool2:2.12.0")
 
