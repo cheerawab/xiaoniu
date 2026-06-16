@@ -1,0 +1,35 @@
+name: FriendPlugin
+authors: [PartyTeam]
+version: 1.0.0
+api-version: 1.21
+main: co.partygame.friend.FriendPlugin
+depend: [CommonLib]
+softdepend: [LuckPerms, PlaceholderAPI]
+prefix: Friend
+
+commands:
+  friend:
+    description: Main friend system command
+    usage: /friend <add|remove|block|unblock|ignore|unignore|invites|invite|game_invite> [player]
+    permission: partygame.friend
+
+permissions:
+  partygame.friend:
+    description: Can use /friend command and access friend list
+    default: true
+    children:
+      partygame.friend.teleport: true
+      partygame.friend.invite_party: true
+      partygame.friend.invite_game: true
+
+  partygame.friend.teleport:
+    description: Can teleport to online friends
+    default: true
+
+  partygame.friend.invite_party:
+    description: Can invite friends to parties
+    default: true
+
+  partygame.friend.invite_game:
+    description: Can invite friends to games via matchmaking
+    default: true

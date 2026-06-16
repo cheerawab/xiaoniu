@@ -1,0 +1,73 @@
+# Friend Plugin Configuration
+# All messages support & color codes and {display_name} placeholder
+
+# ─── Messages ───────────────────────────────────────────────────────────────
+
+messages:
+  join: "&a{display_name} &7has joined the game"
+  leave: "&c{display_name} &7has left the game"
+  add: "&aYou have added &e{display_name}&a as a friend"
+  remove: "&cYou removed &e{display_name}&c as a friend"
+  block: "&cYou have blocked &e{display_name}&c"
+  ignored_blocks: "&6{display_name}&7's messages are now ignored (friend is on block/ignore list)"
+  invite: "&a{display_name} &7invited you to join their {game_name} game! /friend game_invite"
+  game_invite: "&a{display_name} &7invited you to join a game!"
+
+# ─── Feature Settings ───────────────────────────────────────────────────────
+
+blocks_on_join: false  # Should blocks be removed on logout?
+max_friends: 50
+online_broadcast: true  # Broadcast friend join/leave to all friends?
+notification_sound: "ui.button.click"  # Sound played when friend events happen
+auto_save_interval: 300  # Auto-save interval in seconds (0 to disable)
+
+# ─── MySQL Database ─────────────────────────────────────────────────────────
+
+database:
+  host: "localhost"
+  port: 3306
+  database: "partygame"
+  username: "root"
+  password: "password"
+  pool:
+    maximumPoolSize: 10
+    minimumIdle: 2
+    connectionTimeout: 30000
+
+# ─── Redis Configuration ────────────────────────────────────────────────────
+
+redis:
+  host: "localhost"
+  port: 6379
+  password: ""
+  database: 0
+  channel: "partygame:friend"
+  pool:
+    maxTotal: 20
+    maxIdle: 10
+    minIdle: 5
+
+# ─── GUI Settings ────────────────────────────────────────────────────────────
+
+gui:
+  theme: "dark"
+  refresh_interval: 5  # Seconds between auto-refresh for pending invites
+
+# ─── Permissions ────────────────────────────────────────────────────────────
+
+permissions:
+  # Base friend command access
+  partygame.friend:
+    default: true
+
+  # Teleport to friends
+  partygame.friend.teleport:
+    default: true
+
+  # Invite friends to parties
+  partygame.friend.invite_party:
+    default: true
+
+  # Invite friends to games
+  partygame.friend.invite_game:
+    default: true

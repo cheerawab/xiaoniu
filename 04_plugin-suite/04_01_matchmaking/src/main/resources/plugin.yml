@@ -1,0 +1,70 @@
+name: Matchmaking
+authors: [PartyTeam]
+version: 1.0.0
+api-version: 1.21
+softdepend: [LuckPerms, PlaceholderAPI]
+main: co.partygame.matchmaking.MatchmakingPlugin
+prefix: Matchmaking
+description: General-purpose matchmaking plugin for PartyGame lobby servers
+
+commands:
+  match:
+    description: Matchmaking command
+    usage: /match <join|cancel|queue|stats|custom>
+    aliases: [mm, matchmaking]
+    permission: partygame.match.use
+
+permissions:
+  partygame.match.*:
+    description: Access to all matchmaking features
+    default: op
+    children:
+      partygame.match.use: true
+      partygame.match.join: true
+      partygame.match.cancel: true
+      partygame.match.queue: true
+      partygame.match.stats: true
+      partygame.match.custom_room: true
+      partygame.match.custom_room_join: true
+      partygame.match.custom_room.create: true
+      partygame.match.admin: true
+
+  partygame.match.use:
+    description: Use the /match command
+    default: true
+
+  partygame.match.join:
+    description: Join matchmaking queues
+    default: true
+
+  partygame.match.cancel:
+    description: Cancel matchmaking
+    default: true
+
+  partygame.match.queue:
+    description: Check queue status
+    default: true
+
+  partygame.match.stats:
+    description: View matchmaking statistics
+    default: true
+
+  partygame.match.custom_room:
+    description: Access custom room features
+    default: true
+
+  partygame.match.custom_room_join:
+    description: Join custom rooms
+    default: true
+
+  partygame.match.custom_room.create:
+    description: Create custom rooms
+    default: true
+
+  partygame.match.admin:
+    description: Admin matchmaking features
+    default: op
+
+  partygame.game.*:
+    description: Access to all game types
+    default: op

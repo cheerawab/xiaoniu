@@ -1,0 +1,42 @@
+# ============================================
+# SwmPurpur Framework Configuration
+# ============================================
+
+# Directory containing .slimeworld files to auto-load on server start
+swm:
+  worlds-directory: "swm_worlds"
+  
+  # Auto-load all .slimeworld files on startup
+  auto-load-worlds: true
+  
+  # Pre-load worlds into the pool for immediate allocation (optional, defaults to all)
+  preload-worlds:
+    - "lobby_skyblock"
+    - "bedwars_base"
+    - "skywars_base"
+  
+  # World pool settings
+  world-pool:
+    # Maximum number of game worlds to keep in the pool at once (0 = unlimited)
+    max-pool-size: 0
+    # Eviction: remove worlds with no active players after this many seconds (0 = never)
+    idle-eviction-seconds: 300
+    # Reuse template to create world instances instead of loading separate .slimeworld files
+    use-template-instances: true
+
+# Player teleport settings
+teleport:
+  # Number of teleport attempts before giving up
+  max-teleport-attempts: 3
+  # Delay in ticks between each teleport attempt (0 = immediate)
+  teleport-delay: 0
+  # Sync all players in a group teleport (all or nothing)
+  sync-group-teleport: true
+  # Prevent players from moving during teleport sequence
+  lock-position-during-teleport: true
+
+# Logging
+logging:
+  enabled: true
+  log-teleport-events: true
+  log-world-load-events: true
