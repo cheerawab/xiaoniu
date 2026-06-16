@@ -1,6 +1,0 @@
-name: McFriend
-version: 1.0.0
-author: PursWM Team
-main: co.partygame.friend.FriendPlugin
-api-version: 1.21
-depend: [McCommon]

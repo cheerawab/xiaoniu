@@ -1,6 +1,0 @@
-name: McCommon
-version: 1.0.0
-author: PursWM Team
-main: co.partygame.common.McCommonPlugin
-api-version: 1.21
-softdepend: [LuckPerms, PlaceholderAPI]
