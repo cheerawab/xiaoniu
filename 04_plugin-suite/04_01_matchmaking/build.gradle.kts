@@ -8,6 +8,10 @@ version = "1.0.0"
 
 repositories {
     mavenCentral()
+    maven { url = uri("https://LuckPerms.dev/repo") }
+    maven { url = uri("https://oss.sonatype.org/content/repositories/snapshots/") }
+    maven { url = uri("https://mvn.lucko.me/") }
+    maven { url = uri("https://repo.extendedclip.com/content/repositories/placeholderapi/") }
     flatDir {
         dirs("libs")
     }
