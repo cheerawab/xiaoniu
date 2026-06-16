@@ -19,8 +19,8 @@ repositories {
 }
 
 dependencies {
-    implementation("net.runelite:arpack:1.6.1")
-    implementation("net.jimmc:jnbt:1.5.0")
+    // implementation("net.runelite:arpack:1.6.1")  // repo.runelite.cc is down
+    // implementation("net.jimmc:jnbt:1.5.0")  // repo.runelite.cc is down
     implementation("com.google.guava:guava:32.1.1-jre")
 }
 

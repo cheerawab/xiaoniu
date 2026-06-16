@@ -28,7 +28,7 @@ dependencies {
     implementation("com.fasterxml.jackson.core:jackson-databind:2.17.0")
 
     compileOnly("io.papermc.paper:paper-api:1.21.7-R0.1")
-    compileOnly("co.partygame:common-lib:1.0.0")
+    // compileOnly("co.partygame:common-lib:1.0.0")  // not yet published
     compileOnly("org.luckperms:LuckPerms-Bukkit:5.4.102")
     compileOnly("net.luckperms:api:5.4.102")
     compileOnly("me.clip:placeholderapi:2.11.6")
