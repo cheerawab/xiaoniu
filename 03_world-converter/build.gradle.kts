@@ -28,12 +28,14 @@ application {
     mainClass = "co.partygame.converter.WorldConverter"
 }
 
+import com.gradleup.shadow.tasks.ShadowJar
+
 tasks {
-    named<ShadowJar>("shadowJar") {
+    named("shadowJar", ShadowJar::class) {
         archiveFileName.set("world-converter-${project.version}.jar")
         minimize()
     }
-    as {
+    named("assemble") {
         dependsOn("shadowJar")
     }
 }

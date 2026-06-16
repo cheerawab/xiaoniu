@@ -36,8 +36,10 @@ dependencies {
     compileOnly("com.zaxxer:HikariCP:5.1.0")
 }
 
+import com.gradleup.shadow.tasks.ShadowJar
+
 tasks {
-    named<ShadowJar>("shadowJar") {
+    named("shadowJar", ShadowJar::class) {
         archiveFileName.set("Matchmaking-${project.version}.jar")
         minimize()
     }
