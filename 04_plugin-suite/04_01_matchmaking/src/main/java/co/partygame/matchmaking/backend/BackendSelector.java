@@ -53,10 +53,17 @@ public class BackendSelector {
         String selected = null;
 
         switch (strategy) {
-            case LEAST_PLAYERS -> selected = selectLeastPlayers(backends); break;
-            case ROUND_ROBIN -> selected = selectRoundRobin(backends); break;
-            case RANK_AWARE -> selected = selectRankAware(backends); break;
-            default -> selected = selectLeastPlayers(backends);
+            case LEAST_PLAYERS:
+                selected = selectLeastPlayers(backends);
+                break;
+            case ROUND_ROBIN:
+                selected = selectRoundRobin(backends);
+                break;
+            case RANK_AWARE:
+                selected = selectRankAware(backends);
+                break;
+            default:
+                selected = selectLeastPlayers(backends);
         }
         return selected;
     }

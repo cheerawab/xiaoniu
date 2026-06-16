@@ -79,10 +79,17 @@ public class StatsGUI implements Listener {
             MatchRecord record = inst.getMatchRecord();
 
             switch (tabId) {
-                case 0 -> showMainTab(player, inv, record);
-                case 1 -> showGameTab(inv);
-                case 2 -> showHistoryTab(inv);
-                default -> showMainTab(player, inv, record);
+                case 0:
+                    showMainTab(player, inv, record);
+                    break;
+                case 1:
+                    showGameTab(inv);
+                    break;
+                case 2:
+                    showHistoryTab(inv);
+                    break;
+                default:
+                    showMainTab(player, inv, record);
             }
         } catch (Exception e) {
             inv.setItem(11, new ItemBuilder(Material.BARRIER)
