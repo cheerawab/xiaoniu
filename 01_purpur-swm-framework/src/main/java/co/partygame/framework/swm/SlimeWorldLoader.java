@@ -206,7 +206,11 @@ public class SlimeWorldLoader {
         }
         var fileStore = getFileSystem();
         if (fileStore == null) return -1;
-        return fileStore.getUsableSpace();
+        try {
+            return fileStore.getUsableSpace();
+        } catch (IOException e) {
+            return -1;
+        }
     }
 
     private java.nio.file.FileStore getFileSystem() {
