@@ -1,5 +1,6 @@
 plugins {
     id("java")
+    id("com.gradleup.shadow") version "9.2.2"
 }
 
 group = "co.partygame.framework"
@@ -15,7 +16,7 @@ java {
 
 repositories {
     mavenCentral()
-    flatDir {
+    flat_dir {
         dirs("libs")
     }
 }
@@ -30,4 +31,22 @@ dependencies {
 
     implementation("com.fasterxml.jackson.core:jackson-databind:2.15.2")
     implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.15.2")
+}
+
+tasks {
+    shadowJar {
+        archiveFileName.set("SWMFramework-${project.version}.jar")
+        // Don't    }
+
+    jar {
+        enabled = false
+    }
+
+    compileJava {
+        options.encoding = "UTF-8"
+    }
+
+    javadoc {
+        options.encoding = "UTF-8"
+    }
 }

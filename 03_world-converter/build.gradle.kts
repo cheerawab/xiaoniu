@@ -31,7 +31,6 @@ application {
 tasks {
     withType<com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar> {
         archiveFileName.set("world-converter-${project.version}.jar")
-        minimize()
     }
     named("assemble") {
         dependsOn("shadowJar")

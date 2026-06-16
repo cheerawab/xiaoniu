@@ -6,18 +6,8 @@ plugins {
 group = "co.partygame"
 version = "1.0.0"
 
-java {
-    toolchain {
-        languageVersion.set(JavaLanguageVersion.of(21))
-    }
-}
-
 repositories {
     mavenCentral()
-    maven { url = uri("https://LuckPerms.dev/repo") }
-    maven { url = uri("https://oss.sonatype.org/content/repositories/snapshots/") }
-    maven { url = uri("https://mvn.lucko.me/") }
-    maven { url = uri("https://repo.extendedclip.com/content/repositories/placeholderapi/") }
     flatDir {
         dirs("libs")
     }
@@ -30,7 +20,6 @@ dependencies {
     compileOnly("net.kyori:adventure-api:4.17.0")
     compileOnly("net.kyori:adventure-text-minimessage:4.17.0")
 
-    // compileOnly("co.partygame:common-lib:1.0.0")  // not yet published
     compileOnly("org.luckperms:LuckPerms-Bukkit:5.4.102")
     compileOnly("net.luckperms:api:5.4.102")
     compileOnly("me.clip:placeholderapi:2.11.6")
@@ -39,14 +28,19 @@ dependencies {
 }
 
 tasks {
-    withType<com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar> {
+    shadowJar {
         archiveFileName.set("Matchmaking-${project.version}.jar")
-        minimize()
     }
+
+    jar {
+        enabled = false
+    }
+
     compileJava {
         options.encoding = "UTF-8"
-        options.compilerArgs.add("-enablePreview")
+        options.compilerArgs.add("-enable-preview")
     }
+
     javadoc {
         options.encoding = "UTF-8"
     }
