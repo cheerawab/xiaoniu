@@ -42,7 +42,7 @@ public final class WorldTemplate {
     /**
      * Creates a simple template with given environment and type.
      */
-    public static WorldTemplate of(String name, org.bukkit.WorldEnvironment environment, org.bukkit.WorldType type) {
+    public static WorldTemplate of(String name, org.bukkit.World.Environment environment, org.bukkit.WorldType type) {
         return builder(name)
                 .environment(environment)
                 .worldType(type)

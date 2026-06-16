@@ -76,7 +76,7 @@ public class PlayerTransfer implements Listener {
         }
 
         cancelPendingFutures(player.getUniqueId());
-        return teleportWithRetry(player, worldName, 0.0, 0.0, 0.0, 0.0);
+        return teleportWithRetry(player, worldName, 0f, 0f, 0f, 0f);
     }
 
     /**
@@ -112,8 +112,8 @@ public class PlayerTransfer implements Listener {
             PlayerTeleportEvent event = new PlayerTeleportEvent(
                     player, player.getLocation(), location,
                     PlayerTeleportEvent.TeleportCause.PLUGIN);
-
-            if (Bukkit.getPluginManager().callEvent(event).isCancelled()) {
+            Bukkit.getPluginManager().callEvent(event);
+            if (event.isCancelled()) {
                 releaseLock(player);
                 return false;
             }
@@ -343,8 +343,8 @@ public class PlayerTransfer implements Listener {
 
             PlayerTeleportEvent event = new PlayerTeleportEvent(
                     player, player.getLocation(), target, PlayerTeleportEvent.TeleportCause.PLUGIN);
-
-            if (Bukkit.getPluginManager().callEvent(event).isCancelled()) {
+            Bukkit.getPluginManager().callEvent(event);
+            if (event.isCancelled()) {
                 if (logTeleportEvents) {
                     plugin.getLogger().warning("Teleport cancelled by event for '"
                             + player.getName() + "' to '" + worldName + "'");

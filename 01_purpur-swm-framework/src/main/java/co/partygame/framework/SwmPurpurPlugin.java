@@ -4,6 +4,7 @@ import co.partygame.framework.player.PlayerTransfer;
 import co.partygame.framework.swm.SlimeWorldLoader;
 import co.partygame.framework.swm.SwmWorldManager;
 import co.partygame.framework.swm.SwmWorldManager.WorldLoadResult;
+import co.partygame.framework.swm.SwmWorldManager.Status;
 import co.partygame.framework.swm.SwmWorldManager.WorldEntry;
 import co.partygame.framework.swm.WorldPool;
 import co.partygame.framework.swm.WorldTemplate;
@@ -38,7 +39,7 @@ public class SwmPurpurPlugin extends JavaPlugin {
     private SlimeWorldLoader worldLoader;
     private PlayerTransfer playerTransfer;
     private Path worldsDirectory;
-    private final Map<String, WorldTemplate> templates;
+    private Map<String, WorldTemplate> templates;
     private volatile boolean swmPluginDetected;
 
     @Override
@@ -70,7 +71,6 @@ public class SwmPurpurPlugin extends JavaPlugin {
 
         // Register subsystems' event listeners
         getServer().getPluginManager().registerEvents(worldManager, this);
-        getServer().getPluginManager().registerEvents(worldPool, this);
         getServer().getPluginManager().registerEvents(playerTransfer, this);
 
         // Setup commands and tab-completers
@@ -95,7 +95,7 @@ public class SwmPurpurPlugin extends JavaPlugin {
         for (WorldEntry entry : worldManager.getWorlds()) {
             try {
                 WorldLoadResult result = worldManager.saveWorld(entry.name());
-                if (result.status() != WorldLoadResult.Status.WORLD_SAVED) {
+                if (result.status() != Status.WORLD_SAVED) {
                     getLogger().severe("Failed to save world: " + entry.name());
                 }
             } catch (Exception e) {
@@ -150,7 +150,7 @@ public class SwmPurpurPlugin extends JavaPlugin {
                 }
                 WorldLoadResult result = worldPool.loadWorld(args[0]);
                 sendLoadResult(sender, result);
-                return result.status() == WorldLoadResult.Status.SUCCESS;
+                return result.status() == Status.SUCCESS;
             }
         });
         getCommand("worldload").setTabCompleter(new TabCompleter() {
@@ -235,7 +235,7 @@ public class SwmPurpurPlugin extends JavaPlugin {
     }
 
     private boolean onCommandWorlds(CommandSender sender) {
-        List<String> loaded = worldManager.getLoadedWorldNames();
+        List<String> loaded = new ArrayList<>(worldManager.getLoadedWorldNames());
         if (loaded.isEmpty()) {
             sender.sendMessage(ChatColor.GRAY + "No SWM worlds currently loaded.");
             return true;
@@ -373,7 +373,7 @@ public class SwmPurpurPlugin extends JavaPlugin {
                 }
 
                 WorldLoadResult result = worldPool.loadWorld(name);
-                if (result.status() == WorldLoadResult.Status.SUCCESS) {
+                if (result.status() == Status.SUCCESS) {
                     loaded++;
                 }
             }

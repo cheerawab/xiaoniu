@@ -441,17 +441,12 @@ public class SwmWorldManager implements Listener {
      */
     @EventHandler
     public void onWorldInit(WorldInitEvent event) {
-        World world = event.getWorld();
-        if (world == null) return;
-
-        String name = world.getName();
+        String name = event.getWorld().getName();
         if (isWorldBlocked(name)) {
-            event.setCancelled(true);
-            if (plugin.getConfig().getBoolean("logging.enabled", true)) {
-                plugin.getLogger().warning(
-                        "Blocked auto-initialization of vanilla world '" + name + "'"
-                );
-            }
+            plugin.getLogger().warning(
+                    "Blocked auto-initialization of vanilla world '" + name + "'"
+            );
+            event.getWorld().setAutoSave(false);
         }
     }
 
@@ -466,7 +461,6 @@ public class SwmWorldManager implements Listener {
 
         if (!loadedWorlds.containsKey(world.getName())) {
             if (isWorldBlocked(world.getName())) {
-                event.setCancelled(true);
                 plugin.getLogger().warning(
                         "Blocked load of unregistered world '" + world.getName() + "'"
                 );

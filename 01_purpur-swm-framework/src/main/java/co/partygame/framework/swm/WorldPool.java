@@ -1,6 +1,8 @@
 package co.partygame.framework.swm;
 
 import co.partygame.framework.SwmPurpurPlugin;
+import co.partygame.framework.swm.SwmWorldManager.WorldLoadResult;
+import co.partygame.framework.swm.SwmWorldManager.Status;
 import org.bukkit.Bukkit;
 
 import java.nio.file.*;
@@ -70,24 +72,24 @@ public final class WorldPool {
      * Load a world by name and add it to the available pool.
      */
     public WorldLoadResult loadWorld(String worldName) {
-        if (shutdown) return new WorldLoadResult(WorldLoadResult.Status.LOAD_FAILED, worldName);
+        if (shutdown) return new WorldLoadResult(Status.LOAD_FAILED, worldName);
         if (worldName == null || worldName.isEmpty()) {
-            return new WorldLoadResult(WorldLoadResult.Status.LOAD_FAILED, "");
+            return new WorldLoadResult(Status.LOAD_FAILED, "");
         }
 
         if (availablePool.containsKey(worldName) || allocatedWorlds.containsKey(worldName)) {
-            return new WorldLoadResult(WorldLoadResult.Status.WORLD_ALREADY_LOADED, worldName);
+            return new WorldLoadResult(Status.WORLD_ALREADY_LOADED, worldName);
         }
 
         SlimeWorldLoader loader = worldLoader;
         Path file = loader.getWorldFilePath(worldName);
         if (!Files.exists(file)) {
-            return new WorldLoadResult(WorldLoadResult.Status.FILE_NOT_FOUND, worldName);
+            return new WorldLoadResult(Status.FILE_NOT_FOUND, worldName);
         }
 
         // Delegate to WorldManager to perform the actual world loading
         WorldLoadResult result = worldManager.loadWorld(worldName);
-        if (result.status() == WorldLoadResult.Status.SUCCESS) {
+        if (result.status() == Status.SUCCESS) {
             availablePool.put(worldName, WorldInfo.of(worldName, false));
             plugin.getLogger().info("World '" + worldName + "' added to available pool.");
         }
