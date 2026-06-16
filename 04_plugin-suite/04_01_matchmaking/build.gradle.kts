@@ -1,6 +1,6 @@
 plugins {
     id("java")
-    id("com.github.johnrengelman.shadow") version "8.1.1"
+    id("com.gradleup.shadow") version "9.2.2"
 }
 
 group = "co.partygame"
@@ -14,8 +14,7 @@ java {
 
 repositories {
     mavenCentral()
-    maven { url = uri("https://papermc.io/repo/repository/maven-releases/") }
-    maven { url = uri("https://repo.papermc.io/repository/maven-releases/") }
+    maven("https://repo.papermc.io/repository/maven-public/")
     maven { url = uri("https://LuckPerms.dev/repo") }
     maven { url = uri("https://oss.sonatype.org/content/repositories/snapshots/") }
     maven { url = uri("https://mvn.lucko.me/") }
