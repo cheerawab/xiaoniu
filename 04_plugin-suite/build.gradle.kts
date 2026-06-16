@@ -2,6 +2,8 @@ plugins {
     id("java")
 }
 
-jar {
-    enabled = false
+tasks {
+    jar {
+        enabled = false
+    }
 }
