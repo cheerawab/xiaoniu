@@ -327,16 +327,17 @@ public final class GameSession {
         sorted.sort((a, b) -> Integer.compare(b.score, a.score));
 
         int rank = 1;
-        Map<String, ScoreEntry> updatedScores = new HashMap<>();
+        Map<String, ScoreEntry> updatedEntries = new LinkedHashMap<>();
         for (int i = 0; i < sorted.size(); i++) {
-            if (i > 0 && sorted.get(i).score() < sorted.get(i - 1).score()) {
-                rank = i + 1;
-            }
             ScoreEntry entry = sorted.get(i);
-            updatedScores.put(entry.playerName(), new ScoreEntry(entry.playerName(), entry.score(), rank));
+            updatedEntries.put(entry.playerName, new ScoreEntry(entry.playerName, entry.score, rank));
+            if (i < sorted.size() - 1) {
+                ScoreEntry next = sorted.get(i + 1);
+                if (next.score < entry.score) rank = i + 2;
+            }
         }
         scores.clear();
-        scores.putAll(updatedScores);
+        scores.putAll(updatedEntries);
     }
 
     /**
