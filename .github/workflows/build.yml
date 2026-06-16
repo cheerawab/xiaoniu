@@ -2,139 +2,32 @@ name: Build PurWM
 
 on:
   push:
-    branches: [ main, master, develop ]
+    branches: [ main, develop ]
   pull_request:
-    branches: [ main, master, develop ]
+    branches: [ main, develop ]
   workflow_dispatch:
 
-permissions:
-  contents: read
-
 jobs:
-  build-framework:
-    name: Build Framework
+  build:
+    name: Build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       
-      - name: Setup Java 21
-        uses: gradle/actions/setup-gradle@v3
+      - name: Setup Java
+        uses: actions/setup-java@v4
         with:
+          distribution: temurin
           java-version: 21
-          gradle-version: '8.10'
-
-      - name: Build framework
-        run: ./gradlew :01_purpur-swm-framework:build
-
-      - name: Upload framework artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: purpur-swm-framework
-          path: 01_purpur-swm-framework/build/libs/*.jar
-          retention-days: 7
-
-  build-partygame:
-    name: Build PartyGame Framework
-    runs-on: ubuntu-latest
-    needs: [build-framework]
-    steps:
-      - uses: actions/checkout@v4
       
-      - name: Setup Java 21
+      - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v3
-        with:
-          java-version: 21
-          gradle-version: '8.10'
 
-      - name: Build partygame framework
-        run: ./gradlew :02_purpur-swm-partygame:build
+      - name: Build all projects
+        run: ./gradlew clean build --no-daemon
 
-      - name: Upload partygame artifact
+      - name: Save JARs
         uses: actions/upload-artifact@v4
         with:
-          name: purpur-swm-partygame
-          path: 02_purpur-swm-partygame/build/libs/*.jar
-          retention-days: 7
-
-  build-converter:
-    name: Build World Converter
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      
-      - name: Setup Java 21
-        uses: gradle/actions/setup-gradle@v3
-        with:
-          java-version: 21
-          gradle-version: '8.10'
-
-      - name: Build converter
-        run: ./gradlew :03_world-converter:build
-
-      - name: Upload converter artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: world-converter
-          path: 03_world-converter/build/libs/*.jar
-          retention-days: 7
-
-  build-plugins:
-    name: Build Plugins
-    runs-on: ubuntu-latest
-    needs: [build-framework, build-partygame]
-    steps:
-      - uses: actions/checkout@v4
-      
-      - name: Setup Java 21
-        uses: gradle/actions/setup-gradle@v3
-        with:
-          java-version: 21
-          gradle-version: '8.10'
-
-      - name: Build common-lib
-        run: ./gradlew :04_plugin-suite:04_04_common-lib:build
-
-      - name: Upload common-lib artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: common-lib
-          path: 04_plugin-suite/04_04_common-lib/build/libs/*.jar
-          retention-days: 7
-
-      - name: Build matchmaking
-        run: ./gradlew :04_plugin-suite:04_01_matchmaking:build
-
-      - name: Upload matchmaking artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: matchmaking
-          path: 04_plugin-suite/04_01_matchmaking/build/libs/*.jar
-          retention-days: 7
-
-      - name: Build partygame-core
-        run: ./gradlew :04_plugin-suite:04_02_partygame-core:build
-
-      - name: Upload partygame-core artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: partygame-core
-          path: 04_plugin-suite/04_02_partygame-core/build/libs/*.jar
-          retention-days: 7
-
-      - name: Build friend
-        run: ./gradlew :04_plugin-suite:04_03_friend:build
-
-      - name: Upload friend artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: friend
-          path: 04_plugin-suite/04_03_friend/build/libs/*.jar
-          retention-days: 7
-
-  status:
-    name: Build Status
-    runs on: ubuntu-latest
-    needs: [build-framework, build-partygame, build-converter, build-plugins]
-    if: success()
-    steps:
-      - run: echo "All builds completed successfully!"
+          name: built-jars
+          path: "**/build/libs/*.jar"
