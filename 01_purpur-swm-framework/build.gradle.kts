@@ -16,7 +16,7 @@ java {
 
 repositories {
     mavenCentral()
-    flat_dir {
+    flatDir {
         dirs("libs")
     }
 }
@@ -36,7 +36,7 @@ dependencies {
 tasks {
     shadowJar {
         archiveFileName.set("SWMFramework-${project.version}.jar")
-        // Don't    }
+    }
 
     jar {
         enabled = false
