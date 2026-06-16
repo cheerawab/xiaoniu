@@ -1,3 +1,5 @@
+import com.gradleup.shadow.tasks.ShadowJar
+
 plugins {
     id("java")
     id("com.gradleup.shadow") version "9.2.2"
@@ -35,8 +37,6 @@ dependencies {
     compileOnly("redis.clients:jedis:5.1.0")
     compileOnly("com.zaxxer:HikariCP:5.1.0")
 }
-
-import com.gradleup.shadow.tasks.ShadowJar
 
 tasks {
     named("shadowJar", ShadowJar::class) {

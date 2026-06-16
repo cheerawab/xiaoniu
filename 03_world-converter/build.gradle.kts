@@ -1,3 +1,5 @@
+import com.gradleup.shadow.tasks.ShadowJar
+
 plugins {
     id("java")
     id("application")
@@ -28,8 +30,6 @@ application {
     mainClass = "co.partygame.converter.WorldConverter"
 }
 
-import com.gradleup.shadow.tasks.ShadowJar
-
 tasks {
     named("shadowJar", ShadowJar::class) {
         archiveFileName.set("world-converter-${project.version}.jar")
@@ -37,5 +37,11 @@ tasks {
     }
     named("assemble") {
         dependsOn("shadowJar")
+    }
+    compileJava {
+        options.encoding = "UTF-8"
+    }
+    javadoc {
+        options.encoding = "UTF-8"
     }
 }
