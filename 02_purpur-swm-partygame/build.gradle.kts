@@ -23,7 +23,10 @@ repositories {
 dependencies {
     compileOnly(files("../01_purpur-swm-framework/libs/paper-api-1.21.7-R0.1-SNAPSHOT.jar"))
 
-    // Project dependency ??this framework depends on the SWM framework (module 1)
+    compileOnly("net.kyori:adventure-api:4.17.0")
+    compileOnly("net.kyori:adventure-text-minimessage:4.17.0")
+
+    // Project dependency: this framework depends on the SWM framework (module 1)
     implementation(project(":01_purpur-swm-framework"))
 
     // BungeeCord messaging for cross-server matchmaking
