@@ -2,7 +2,7 @@ package co.partygame.matchmaking;
 
 import co.partygame.common.redis.RedisManager;
 import co.partygame.common.util.JsonUtils;
-import co.partygame.config.ConfigManager;
+import co.partygame.common.config.ConfigManager;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import org.bukkit.Bukkit;

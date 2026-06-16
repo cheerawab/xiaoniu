@@ -1,7 +1,7 @@
 package co.partygame.matchmaking.backend;
 
 import co.partygame.common.redis.RedisManager;
-import co.partygame.config.ConfigManager;
+import co.partygame.common.config.ConfigManager;
 
 import java.util.*;
 import java.util.logging.Logger;
