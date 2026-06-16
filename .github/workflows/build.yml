@@ -19,14 +19,14 @@ jobs:
           distribution: temurin
           java-version: 21
 
-      - name: Build with Gradle
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v3
+
+      - name: Build all projects
         run: ./gradlew clean build --no-daemon
 
-      - name: Upload built JARs
+      - name: Save JARs
         uses: actions/upload-artifact@v4
         with:
           name: built-jars
-          path: |
-            01_purpur-swm-framework/build/libs/*-1.0.0.jar
-            02_purpur-swm-partygame/build/libs/*-1.0.0.jar
-            04_plugin-suite/04_01_matchmaking/build/libs/*.jar
+          path: "**/build/libs/*.jar"
