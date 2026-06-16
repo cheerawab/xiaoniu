@@ -32,8 +32,8 @@ dependencies {
     implementation(project(":01_purpur-swm-framework"))
 
     // BungeeCord messaging for cross-server matchmaking
-    compileOnly("net.md-5:bungeecord-chat:1.20-R0.1")
-    compileOnly("net.md-5:bungeecord-api:1.20-R0.1")
+    // compileOnly("net.md-5:bungeecord-chat:1.20-R0.1")
+    // compileOnly("net.md-5:bungeecord-api:1.20-R0.1")
 
     // JSON/MessagePack for match payload processing
     implementation("com.fasterxml.jackson.core:jackson-databind:2.15.2")
