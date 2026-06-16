@@ -2,7 +2,7 @@
 
 plugins {
     id("java")
-    id("io.papermc.paperweight.userdev") version "1.7.1"
+    id("io.papermc.paperweight.userdev") version "1.7.6"
 }
 
 group = "co.partygame.framework"
@@ -26,7 +26,7 @@ repositories {
 }
 
 dependencies {
-    devBundle("purpur", "1.21.7")
+    paperweight.devBundle("purpur", "1.21.7")
 
     // SlimeWorldManager API  // haxey mirror is down
     // implementation("fr.milkhalli.spigot:SlimeWorldManager-API:3.0.11") {

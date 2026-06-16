@@ -1,6 +1,6 @@
 plugins {
     id("java")
-    id("io.papermc.paperweight.userdev") version "1.7.1"
+    id("io.papermc.paperweight.userdev") version "1.7.6"
 }
 
 group = "co.partygame.partygame"
@@ -21,7 +21,7 @@ repositories {
 }
 
 dependencies {
-    devBundle("purpur", "1.21.7")
+    paperweight.devBundle("purpur", "1.21.7")
 
     // Project dependency — this framework depends on the SWM framework (module 1)
     implementation(project(":01_purpur-swm-framework"))
