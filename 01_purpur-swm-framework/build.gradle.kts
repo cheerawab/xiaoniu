@@ -1,4 +1,4 @@
-import fr.milkhalli.spigot.slimeworldmanager.api.SlimeWorldManager
+// import fr.milkhalli.spigot.slimeworldmanager.api.SlimeWorldManager  // haxey mirror is down - needs manual SWM API
 
 plugins {
     id("java")
@@ -28,10 +28,10 @@ repositories {
 dependencies {
     paperDevBundle("1.21.7-R0.1-SNAPSHOT")
 
-    // SlimeWorldManager API
-    implementation("fr.milkhalli.spigot:SlimeWorldManager-API:3.0.11") {
-        exclude(group = "org.spigotmc")
-    }
+    // SlimeWorldManager API  // haxey mirror is down
+    // implementation("fr.milkhalli.spigot:SlimeWorldManager-API:3.0.11") {
+    //     exclude(group = "org.spigotmc")
+    // }
 
     // Folia / Paper API (Folia compatibility)
     compileOnly("dev.folia:folia-api:1.21.4-R0.1-SNAPSHOT")
@@ -60,7 +60,7 @@ tasks {
         }
     }
 
-    reinstateJar {
-        // Remove Paper remapped classes from final jar
-    }
+    // reinstateJar {  // paperweight task - temporarily disabled
+    //     // Remove Paper remapped classes from final jar
+    // }
 }
