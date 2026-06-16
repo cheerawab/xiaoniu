@@ -14,7 +14,6 @@ java {
 
 repositories {
     mavenCentral()
-    maven("https://repo.papermc.io/repository/maven-public/")
     maven { url = uri("https://LuckPerms.dev/repo") }
     maven { url = uri("https://oss.sonatype.org/content/repositories/snapshots/") }
     maven { url = uri("https://mvn.lucko.me/") }
@@ -27,7 +26,7 @@ repositories {
 dependencies {
     implementation("com.fasterxml.jackson.core:jackson-databind:2.17.0")
 
-    compileOnly("io.papermc.paper:paper-api:1.21.7-R0.1-SNAPSHOT")
+    compileOnly(files("../../01_purpur-swm-framework/libs/paper-api-1.21.7-R0.1-SNAPSHOT.jar"))
     // compileOnly("co.partygame:common-lib:1.0.0")  // not yet published
     compileOnly("org.luckperms:LuckPerms-Bukkit:5.4.102")
     compileOnly("net.luckperms:api:5.4.102")

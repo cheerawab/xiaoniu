@@ -15,12 +15,13 @@ java {
 
 repositories {
     mavenCentral()
-    maven("https://repo.papermc.io/repository/maven-public/")
-    maven("https://jitpack.io")
+    flatDir {
+        dirs("libs")
+    }
 }
 
 dependencies {
-    compileOnly("io.papermc.paper:paper-api:1.21.7-R0.1-SNAPSHOT")
+    compileOnly(files("libs/paper-api-1.21.7-R0.1-SNAPSHOT.jar"))
 
     // SlimeWorldManager API  // haxey mirror is down
     // implementation("fr.milkhalli.spigot:SlimeWorldManager-API:3.0.11") {

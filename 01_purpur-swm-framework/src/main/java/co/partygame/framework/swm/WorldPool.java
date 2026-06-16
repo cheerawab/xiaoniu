@@ -112,7 +112,7 @@ public final class WorldPool {
         }
 
         WorldLoadResult result = worldManager.loadWorld(worldName);
-        if (result.status() != WorldLoadResult.Status.SUCCESS) {
+        if (result.status() != Status.SUCCESS) {
             return null;
         }
 
