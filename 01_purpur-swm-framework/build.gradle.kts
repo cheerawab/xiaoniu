@@ -28,7 +28,7 @@ dependencies {
     // }
 
     // Folia / Paper API (Folia compatibility)
-    compileOnly("dev.folia:folia-api:1.21.4-R0.1-SNAPSHOT")
+    // compileOnly("dev.folia:folia-api:1.21.4-R0.1-SNAPSHOT")  // capability conflict with paper-api
 
     // BungeeCord messaging channels
     compileOnly("net.md-5:bungeecord-chat:1.20-R0.1")
