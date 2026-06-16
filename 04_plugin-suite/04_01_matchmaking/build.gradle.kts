@@ -1,5 +1,3 @@
-import com.gradleup.shadow.tasks.ShadowJar
-
 plugins {
     id("java")
     id("com.gradleup.shadow") version "9.2.2"
@@ -39,7 +37,7 @@ dependencies {
 }
 
 tasks {
-    named("shadowJar", ShadowJar::class) {
+    withType<com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar> {
         archiveFileName.set("Matchmaking-${project.version}.jar")
         minimize()
     }

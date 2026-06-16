@@ -1,5 +1,3 @@
-import com.gradleup.shadow.tasks.ShadowJar
-
 plugins {
     id("java")
     id("application")
@@ -31,7 +29,7 @@ application {
 }
 
 tasks {
-    named("shadowJar", ShadowJar::class) {
+    withType<com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar> {
         archiveFileName.set("world-converter-${project.version}.jar")
         minimize()
     }
