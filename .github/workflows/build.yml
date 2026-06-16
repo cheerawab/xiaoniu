@@ -20,41 +20,41 @@ jobs:
         with:
           java-version: '21'
           distribution: 'temurin'
-          cache: gradle
 
-      - name: Grant execute permission for gradlew
-        run: chmod +x gradlew
-        if: runner.os != 'Windows'
+      - name: Setup Gradle 8.5
+        uses: gradle/actions/setup-gradle@v3
+        with:
+          gradle-version: 8.5
 
       - name: Build with Gradle
-        run: ./gradlew build
+        run: gradle build
 
       - name: Upload build artifacts - common-lib
         uses: actions/upload-artifact@v4
         with:
           name: McCommon
-          path: 04_plugin-suite/04_04_common-lib/build/libs/*.jar
+          path: 04_plugin-suite/common-lib/build/libs/*.jar
           if-no-files-found: warn
 
       - name: Upload build artifacts - matchmaking
         uses: actions/upload-artifact@v4
         with:
           name: McMatchmaking
-          path: 04_plugin-suite/04_01_matchmaking/build/libs/*.jar
+          path: 04_plugin-suite/matchmaking/build/libs/*.jar
           if-no-files-found: warn
 
       - name: Upload build artifacts - friend
         uses: actions/upload-artifact@v4
         with:
           name: McFriend
-          path: 04_plugin-suite/04_03_friend/build/libs/*.jar
+          path: 04_plugin-suite/friend/build/libs/*.jar
           if-no-files-found: warn
 
       - name: Upload build artifacts - PartyGameCore
         uses: actions/upload-artifact@v4
         with:
           name: PartyGameCore
-          path: 04_plugin-suite/04_02_partygame-core/build/libs/*.jar
+          path: 04_plugin-suite/partygame-core/build/libs/*.jar
           if-no-files-found: warn
 
       - name: Upload build artifacts - SWMFramework
