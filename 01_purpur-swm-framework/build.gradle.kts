@@ -26,7 +26,7 @@ repositories {
 }
 
 dependencies {
-    paperDevBundle("1.21.7-R0.1-SNAPSHOT")
+    devBundle("purpur", "1.21.7")
 
     // SlimeWorldManager API  // haxey mirror is down
     // implementation("fr.milkhalli.spigot:SlimeWorldManager-API:3.0.11") {

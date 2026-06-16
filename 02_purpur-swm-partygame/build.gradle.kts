@@ -21,7 +21,7 @@ repositories {
 }
 
 dependencies {
-    paperDevBundle("1.21.7-R0.1-SNAPSHOT")
+    devBundle("purpur", "1.21.7")
 
     // Project dependency — this framework depends on the SWM framework (module 1)
     implementation(project(":01_purpur-swm-framework"))
