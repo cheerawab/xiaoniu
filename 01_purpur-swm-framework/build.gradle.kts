@@ -36,10 +36,11 @@ dependencies {
 tasks {
     shadowJar {
         archiveFileName.set("SWMFramework-${project.version}.jar")
+        duplicatesStrategy = DuplicatesStrategy.EXCLUDE
     }
 
     jar {
-        enabled = false
+        enabled = true
     }
 
     compileJava {
