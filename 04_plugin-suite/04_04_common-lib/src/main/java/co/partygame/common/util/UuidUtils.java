@@ -83,12 +83,7 @@ public final class UuidUtils {
         }
         int length = uuidStr.length();
         if (length == 32) {
-            for (char c : uuidStr.toCharArray()) {
-                if (!Character.isHexDigit(c)) {
-                    return false;
-                }
-            }
-            return true;
+            return uuidStr.matches("[0-9a-fA-F]+");
         }
         return false;
     }

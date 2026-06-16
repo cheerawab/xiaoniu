@@ -1,5 +1,6 @@
 package co.partygame.common.auth;
 
+import net.luckperms.api.LuckPerms;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 
@@ -65,9 +66,11 @@ public class PermissionManager {
                 java.lang.reflect.Method getInstance = lpApiClass.getMethod("getInstance");
                 Object lpInstance = getInstance.invoke(null);
                 if (lpInstance != null) {
+                    @SuppressWarnings("unchecked")
+                    LuckPerms lp = (LuckPerms) lpInstance;
                     provider = new LuckPermsBridge(
                         (org.bukkit.plugin.java.JavaPlugin) plugin,
-                        lpInstance
+                        lp
                     );
                     LOGGER.info("PermissionManager: Using LuckPerms bridge");
                     return;

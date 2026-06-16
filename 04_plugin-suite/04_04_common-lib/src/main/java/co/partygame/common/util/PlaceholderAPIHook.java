@@ -52,12 +52,8 @@ public class PlaceholderAPIHook extends PlaceholderExpansion {
     }
 
     /**
-     * 註冊此 PlaceholderExpansion 到 PlaceholderAPI。
+     * Registers this PlaceholderExpansion to PlaceholderAPI.
      */
-    public boolean register() {
-        return this.register();
-    }
-
     @Override
     public boolean register() {
         try {
@@ -69,7 +65,7 @@ public class PlaceholderAPIHook extends PlaceholderExpansion {
     }
 
     @Override
-    public String getPlaceholderId() {
+    public String getIdentifier() {
         return "partygame";
     }
 

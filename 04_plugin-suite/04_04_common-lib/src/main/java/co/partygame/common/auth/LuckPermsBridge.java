@@ -1,7 +1,6 @@
 package co.partygame.common.auth;
 
 import net.luckperms.api.LuckPerms;
-import net.luckperms.api.model.group.Group;
 import net.luckperms.api.model.user.User;
 import net.luckperms.api.query.QueryOptions;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -68,7 +67,7 @@ public class LuckPermsBridge implements PermissionProvider {
         }
 
         Map<String, String> context = Collections.singletonMap(contextKey, contextValue);
-        QueryOptions contextOptions = new QueryOptions.Builder(user.getQueryOptions())
+        QueryOptions contextOptions = user.getQueryOptions().toBuilder()
             .context(context)
             .build();
 
@@ -101,8 +100,8 @@ public class LuckPermsBridge implements PermissionProvider {
             return null;
         }
 
-        Group primaryGroup = user.getPrimaryGroup();
-        return primaryGroup != null ? primaryGroup.getName() : null;
+        String primaryGroup = user.getPrimaryGroup();
+        return primaryGroup != null ? primaryGroup : null;
     }
 
     @Override

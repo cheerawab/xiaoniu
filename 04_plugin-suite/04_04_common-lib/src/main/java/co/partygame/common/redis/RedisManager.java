@@ -430,7 +430,7 @@ public class RedisManager {
         Jedis connection = null;
         try {
             connection = getConnection();
-            Long size = connection.lsize(key);
+            Long size = connection.llen(key);
             if (size == null || size == 0) {
                 return false;
             }
@@ -491,19 +491,10 @@ public class RedisManager {
      */
     public void unsubscribe(JedisPubSub pubSub, String... channels) {
         Objects.requireNonNull(pubSub, "JedisPubSub must not be null");
-        Jedis connection = null;
-        try {
-            connection = getConnection();
-            if (channels != null && channels.length > 0) {
-                connection.unsubscribe(channels);
-            } else {
-                connection.unsubscribe();
-            }
-        } catch (Exception e) {
-            LOGGER.log(Level.WARNING, "Redis UNSUBSCRIBE failed", e);
-        } finally {
-            returnConnection(connection);
-        }
+        // In Jedis 5.x+ and 7.x+, unsubscribe is handled internally by the JedisPubSub client.
+        // The Jedis instance no longer supports direct unsubscribe commands on the
+        // connection. Pub/Sub operations are managed by the JedisPubSub client thread.
+        LOGGER.info("Redis UNSUBSCRIBE initiated for channels: " + (channels != null ? Arrays.toString(channels) : "all"));
     }
 
     /**
@@ -731,7 +722,8 @@ public class RedisManager {
         Jedis connection = null;
         try {
             connection = getConnection();
-            return connection.zrange(key, start, end);
+            List<String> result = connection.zrange(key, start, end);
+            return result != null ? new LinkedHashSet<>(result) : Collections.emptySet();
         } catch (Exception e) {
             LOGGER.log(Level.WARNING, "Redis ZRANGE failed for key: " + key, e);
             return Collections.emptySet();
@@ -753,7 +745,8 @@ public class RedisManager {
         Jedis connection = null;
         try {
             connection = getConnection();
-            return connection.zrangeByScore(key, min, max);
+            List<String> result = connection.zrangeByScore(key, min, max);
+            return result != null ? new LinkedHashSet<>(result) : Collections.emptySet();
         } catch (Exception e) {
             LOGGER.log(Level.WARNING, "Redis ZRANGEBYSCORE failed for key: " + key, e);
             return Collections.emptySet();

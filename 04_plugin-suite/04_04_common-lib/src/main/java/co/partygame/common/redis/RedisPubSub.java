@@ -79,32 +79,16 @@ public abstract class RedisPubSub extends redis.clients.jedis.JedisPubSub {
     }
 
     /**
-     * 判斷是否仍處於訂閱狀態。
+     * Create Pub/Sub instance and subscribe to given channels.
+     * This method blocks until unsubscribed.
      *
-     * @return 如果訂閱中則返回 true
-     */
-    public boolean isSubscribed() {
-        return subscribed;
-    }
-
-    /**
-     * 創建 Pub/Sub 實例並訂閱到指定頻道。
-     * 此方法會阻塞直到取消訂閱。
-     *
-     * @param redis  `Manager 實例
-     * @param channels 要訂閱的頻道
+     * @param redisManager Manager instance
+     * @param channels     channels to subscribe to
      */
     public void subscribe(RedisManager redisManager, String... channels) {
         if (redisManager == null || channels == null || channels.length == 0) {
             throw new IllegalArgumentException("RedisManager and at least one channel must not be null");
         }
         redisManager.subscribe(this, channels);
-    }
-
-    /**
-     * 取消訂閱所有當前訂閱的頻道。
-     */
-    public void unsubscribe() {
-        super.unsubscribe();
     }
 }

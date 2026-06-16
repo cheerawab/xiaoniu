@@ -372,7 +372,7 @@ public class ConfigManager {
         Objects.requireNonNull(sectionKey, "sectionKey must not be null");
         Objects.requireNonNull(key, "key must not be null");
         if (config == null) loadConfig();
-        org.bukkit.configuration.ConfigurationSection section = config.getSection(sectionKey);
+        org.bukkit.configuration.ConfigurationSection section = config.getConfigurationSection(sectionKey);
         if (section != null) {
             section.set(key, value);
         } else {
