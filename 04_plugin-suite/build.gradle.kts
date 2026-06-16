@@ -1,9 +1,0 @@
-plugins {
-    id("java")
-}
-
-tasks {
-    jar {
-        enabled = false
-    }
-}
