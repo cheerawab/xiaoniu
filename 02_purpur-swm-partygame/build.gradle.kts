@@ -16,8 +16,7 @@ java {
 
 repositories {
     mavenCentral()
-    maven("https://papermc.io/repo/maven")
-    maven("https://maven.haxey.me/releases")
+    maven("https://repo.papermc.io/repository/maven-public/")
     maven("https://jitpack.io")
 }
 

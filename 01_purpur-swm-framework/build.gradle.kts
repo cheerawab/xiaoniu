@@ -18,11 +18,11 @@ java {
 
 repositories {
     mavenCentral()
-    maven("https://papermc.io/repo/maven")
-    maven("https://maven.haxey.me/releases")        // Spigot/Purpur via Haxey mirror
-    maven("https://maven.haxey.me/snapshots")
-    maven("https://maven.haxey.me/repository/slimeworldmanager")
+    maven("https://repo.papermc.io/repository/maven-public/")
     maven("https://jitpack.io")
+    
+    // SlimeWorldManager API - needs manual addition if haxey mirror is back online
+    // maven("https://maven.haxey.me/repository/slimeworldmanager")
 }
 
 dependencies {
