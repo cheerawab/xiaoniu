@@ -16,6 +16,7 @@ java {
 repositories {
     mavenCentral()
     maven { url = uri("https://oss.sonatype.org/content/repositories/snapshots/") }
+    maven { url = uri("https://api.papermc.io/v2/maven") }
     flatDir {
         dirs("libs")
     }
