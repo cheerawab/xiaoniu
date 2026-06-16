@@ -20,7 +20,7 @@ repositories {
 }
 
 dependencies {
-    compileOnly("io.papermc.paper:paper-api:1.21.7-R0.1")
+    compileOnly("io.papermc.paper:paper-api:1.21.7-R0.1-SNAPSHOT")
 
     // SlimeWorldManager API  // haxey mirror is down
     // implementation("fr.milkhalli.spigot:SlimeWorldManager-API:3.0.11") {
