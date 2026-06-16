@@ -23,7 +23,7 @@ repositories {
 
 dependencies {
     compileOnly(files("../01_purpur-swm-framework/libs/paper-api-1.21.7-R0.1-SNAPSHOT.jar"))
-    compileOnly(files("../01_purpur-swm-framework/libs/brigadier-1.0.14.jar"))
+    compileOnly(files("libs/brigadier-1.0.14.jar"))
 
     compileOnly("net.kyori:adventure-api:4.17.0")
     compileOnly("net.kyori:adventure-text-minimessage:4.17.0")
