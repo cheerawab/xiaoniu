@@ -8,14 +8,9 @@ version = "1.0.0"
 
 repositories {
     mavenCentral()
-    maven { url = uri("https://LuckPerms.dev/repo") }
     maven { url = uri("https://oss.sonatype.org/content/repositories/snapshots/") }
-    maven { url = uri("https://mvn.lucko.me/") }
     maven { url = uri("https://repo.extendedclip.com/content/repositories/placeholderapi/") }
     maven { url = uri("https://repo.papermc.io/repository/maven-public") }
-    flatDir {
-        dirs("libs")
-    }
 }
 
 dependencies {
@@ -25,7 +20,6 @@ dependencies {
     compileOnly("net.kyori:adventure-api:4.17.0")
     compileOnly("net.kyori:adventure-text-minimessage:4.17.0")
 
-    compileOnly("org.luckperms:LuckPerms-Bukkit:5.4.102")
     compileOnly("net.luckperms:api:5.4.102")
     compileOnly("me.clip:placeholderapi:2.11.6")
     compileOnly("redis.clients:jedis:5.1.0")
