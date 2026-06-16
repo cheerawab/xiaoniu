@@ -1,0 +1,6 @@
+name: PartyGameCore
+version: 1.0.0
+author: PursWM Team
+main: co.partygame.core.PartyGamePlugin
+api-version: 1.21
+depend: [SWMFramework]

@@ -1,0 +1,35 @@
+# 預設配置文件 (由 DefaultConfigGenerator 生成)
+# 此文件用作默認模板
+
+database:
+  host: "localhost"
+  port: 3306
+  database: "partygame"
+  username: "root"
+  password: ""
+  pool:
+    size: 5
+    max_lifetime: 1800000
+    idle_timeout: 600000
+
+redis:
+  host: "localhost"
+  port: 6379
+  password: ""
+  database: 0
+  channel: "partygame:lobby"
+  pool:
+    size: 5
+
+backend:
+  strategy: "least_players"
+  health_check_interval: 30
+
+gui:
+  theme: "dark"
+  refresh_interval: 10
+
+matchmaking:
+  queue_ttl: 300
+  max_matches: 8
+  cooldown: 5

@@ -1,0 +1,38 @@
+# Party Game Core 配置
+
+swm:
+  world_folder: "./swm_worlds/"
+  auto_load: true
+  
+game:
+  max_players_per_world: 8
+  world_timeout: 300  # 秒
+  auto_unload: true
+  
+backend:
+  id: "backend1"
+  
+hotreload:
+  enabled: true
+  interval: 5  # 秒
+
+# 遊戲配置
+games:
+  - id: "survival"
+    name: "生存遊戲"
+    min_players: 4
+    max_players: 8
+    worlds: []
+    rounds: 5
+  - id: "obby"
+    name: "障礙關卡"
+    min_players: 4
+    max_players: 8
+    worlds: []
+    rounds: 3
+  - id: "zombie"
+    name: "殭屍圍城"
+    min_players: 4
+    max_players: 8
+    worlds: []
+    rounds: 5

@@ -1,0 +1,79 @@
+name: Build PursWM Project
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    name: Build All Modules
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Java 21
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+          cache: gradle
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+        if: runner.os != 'Windows'
+
+      - name: Build with Gradle
+        run: ./gradlew build
+
+      - name: Upload build artifacts - common-lib
+        uses: actions/upload-artifact@v4
+        with:
+          name: McCommon
+          path: 04_plugin-suite/04_04_common-lib/build/libs/*.jar
+          if-no-files-found: warn
+
+      - name: Upload build artifacts - matchmaking
+        uses: actions/upload-artifact@v4
+        with:
+          name: McMatchmaking
+          path: 04_plugin-suite/04_01_matchmaking/build/libs/*.jar
+          if-no-files-found: warn
+
+      - name: Upload build artifacts - friend
+        uses: actions/upload-artifact@v4
+        with:
+          name: McFriend
+          path: 04_plugin-suite/04_03_friend/build/libs/*.jar
+          if-no-files-found: warn
+
+      - name: Upload build artifacts - PartyGameCore
+        uses: actions/upload-artifact@v4
+        with:
+          name: PartyGameCore
+          path: 04_plugin-suite/04_02_partygame-core/build/libs/*.jar
+          if-no-files-found: warn
+
+      - name: Upload build artifacts - SWMFramework
+        uses: actions/upload-artifact@v4
+        with:
+          name: SWMFramework
+          path: 01_purpur-swm-framework/build/libs/*.jar
+          if-no-files-found: warn
+
+      - name: Upload build artifacts - SWMPartyGame
+        uses: actions/upload-artifact@v4
+        with:
+          name: SWMPartyGame
+          path: 02_purpur-swm-partygame/build/libs/*.jar
+          if-no-files-found: warn
+
+      - name: Upload build artifacts - WorldConverter
+        uses: actions/upload-artifact@v4
+        with:
+          name: WorldConverter
+          path: 03_world-converter/build/libs/*.jar
+          if-no-files-found: warn

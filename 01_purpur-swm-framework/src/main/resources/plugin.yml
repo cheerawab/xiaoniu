@@ -1,0 +1,5 @@
+name: SWMFramework
+version: 1.0.0
+author: PursWM Team
+main: co.partygame.framework.SWMFrameworkPlugin
+api-version: 1.21

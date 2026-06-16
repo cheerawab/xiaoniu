@@ -1,0 +1,7 @@
+name: McMatchmaking
+version: 1.0.0
+author: PursWM Team
+main: co.partygame.matchmaking.MatchmakingPlugin
+api-version: 1.21
+depend: [McCommon]
+softdepend: [LuckPerms, PlaceholderAPI]

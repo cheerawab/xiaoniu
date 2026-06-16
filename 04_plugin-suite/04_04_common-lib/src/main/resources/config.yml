@@ -1,0 +1,32 @@
+# McCommon 配置文件
+# 資料庫配置 (MySQL)
+database:
+  host: "localhost"
+  port: 3306
+  database: "partygame"
+  username: "root"
+  password: "password"
+  pool:
+    size: 5
+    max_lifetime: 1800000  # 30 分鐘
+    idle_timeout: 600000   # 10 分鐘
+
+# Redis 配置
+redis:
+  host: "localhost"
+  port: 6379
+  password: ""
+  database: 0
+  channel: "partygame:lobby"
+  pool:
+    size: 5
+
+# 後端管理
+backend:
+  strategy: "least_players"  # least_players, round_robin
+  health_check_interval: 30000
+
+# GUI 配置
+gui:
+  theme: "dark"
+  refresh_interval: 10  # 秒
