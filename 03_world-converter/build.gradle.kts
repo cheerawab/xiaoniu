@@ -28,20 +28,12 @@ application {
     mainClass = "co.partygame.converter.WorldConverter"
 }
 
-shadowJar {
-    archiveFileName.set("world-converter-${project.version}.jar")
-    minimize()
-}
-
-assemble {
-    dependsOn(shadowJar)
-}
-
 tasks {
-    compileJava {
-        options.encoding = "UTF-8"
+    named<ShadowJar>("shadowJar") {
+        archiveFileName.set("world-converter-${project.version}.jar")
+        minimize()
     }
-    javadoc {
-        options.encoding = "UTF-8"
+    as {
+        dependsOn("shadowJar")
     }
 }

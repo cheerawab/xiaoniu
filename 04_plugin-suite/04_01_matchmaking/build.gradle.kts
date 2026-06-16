@@ -36,16 +36,11 @@ dependencies {
     compileOnly("com.zaxxer:HikariCP:5.1.0")
 }
 
-shadowJar {
-    archiveFileName.set("Matchmaking-${project.version}.jar")
-    minimize()
-}
-
-assemble {
-    dependsOn(shadowJar)
-}
-
 tasks {
+    named<ShadowJar>("shadowJar") {
+        archiveFileName.set("Matchmaking-${project.version}.jar")
+        minimize()
+    }
     compileJava {
         options.encoding = "UTF-8"
         options.compilerArgs.add("-enablePreview")
