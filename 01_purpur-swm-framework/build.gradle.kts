@@ -1,5 +1,3 @@
-// import fr.milkhalli.spigot.slimeworldmanager.api.SlimeWorldManager  // haxey mirror is down - needs manual SWM API
-
 plugins {
     id("java")
     id("io.papermc.paperweight.userdev") version "1.7.6"
@@ -20,13 +18,10 @@ repositories {
     mavenCentral()
     maven("https://repo.papermc.io/repository/maven-public/")
     maven("https://jitpack.io")
-    
-    // SlimeWorldManager API - needs manual addition if haxey mirror is back online
-    // maven("https://maven.haxey.me/repository/slimeworldmanager")
 }
 
 dependencies {
-    paperweight.devBundle("purpur", "1.21.7")
+    paperweight.paperDevBundle("1.21.7-R0.1-SNAPSHOT")
 
     // SlimeWorldManager API  // haxey mirror is down
     // implementation("fr.milkhalli.spigot:SlimeWorldManager-API:3.0.11") {
