@@ -37,7 +37,6 @@ tasks {
 
     compileJava {
         options.encoding = "UTF-8"
-        options.compilerArgs.add("-enable-preview")
     }
 
     javadoc {
